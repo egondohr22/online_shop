@@ -15,4 +15,17 @@ class ApplicationController < ActionController::Base
         }
     end
 
+    def tema
+        respond_to do |format|
+            format.html {
+                render html: "test"
+            }
+            format.json {
+                render json: {
+                    "me": "te"
+                }
+            }
+        end
+    end
+
 end
