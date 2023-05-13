@@ -19,12 +19,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+.my_container {
+   height: 100vh;
+}
+
  .my_shadow {
     box-shadow: 10px 10px 8px 10px lightgray;
  }
 
  .my_login_card {
-    width: 300px;
-    padding: 10px 20px;
-    margin: auto;
+   width: 300px;
+   padding: 10px 20px;
+   margin: auto;
+   margin-top: 20px;
+
  }
