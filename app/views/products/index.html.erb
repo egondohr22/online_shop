@@ -1,6 +1,8 @@
 <div class="container mt-5">
   <h2>Products</h2>
-  <%= link_to 'New Product', new_product_path %>
+  <% if user_signed_in? %>
+    <%= link_to 'New Product', new_product_path %>
+  <%end%>
   <br>
   <table class="table table-info table-striped">
       <thead>
@@ -19,7 +21,13 @@
             <td><%= product.name %></td>
             <td><%= product.stock %></td>
             <td><%= product.price %></td>
-            <td><%= link_to 'Show', product %> | <%= link_to 'Edit', edit_product_path(product) %> | <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+            <%= link_to 'Show', product %>
+            <% if user_signed_in? %>
+              | <%= link_to 'Edit', edit_product_path(product) %>
+              | <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+            </td>
           </tr>
         <% end %>
       </tbody>
