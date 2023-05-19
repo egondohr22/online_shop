@@ -32,5 +32,7 @@
    padding: 10px 20px;
    margin: auto;
    margin-top: 20px;
-
+ }
+ .my_td {
+   text-align: right;
  }

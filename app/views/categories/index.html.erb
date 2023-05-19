@@ -6,8 +6,7 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Description</th>
+          <th class="w-75" scope="col">Name</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -16,7 +15,6 @@
           <tr>
             <td><%= category.id %></td>
             <td><%= category.name %></td>
-            <td><%= category.description %></td>
             <td><%= link_to 'Show', category %> | <%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
