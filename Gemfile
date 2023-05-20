@@ -6,6 +6,8 @@ ruby "3.1.1"
 gem "devise"
 # gem 'bootstrap', '~> 5.1.3'
 gem 'sass-rails', '>= 5'
+gem 'pagy'
+gem "image_processing", ">= 1.2"
 # gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"

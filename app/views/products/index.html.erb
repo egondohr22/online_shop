@@ -4,6 +4,7 @@
     <%= link_to 'New Product', new_product_path %>
   <%end%>
   <br>
+  <br>
   <table class="table table-info table-striped">
       <thead>
         <tr>
@@ -11,6 +12,7 @@
           <th scope="col">Name</th>
           <th scope="col">Stock</th>
           <th scope="col">Price</th>
+          <th scope="col">Category</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -21,6 +23,7 @@
             <td><%= product.name %></td>
             <td><%= product.stock %></td>
             <td><%= product.price %></td>
+            <td><%= product.category.name %></td>
             <td>
             <%= link_to 'Show', product %>
             <% if user_signed_in? %>

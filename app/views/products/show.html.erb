@@ -1,5 +1,5 @@
 <div class="card" style="width: 18rem;">
-  <%= image_tag "i9.jpg", class: "d-block w-100" %>
+  <%= image_tag @product.image.attached? ? @product.image : "i9.jpg", class: "d-block w-100" %>
   <div class="card-body">
     <h5 class="card-title"><%= @product.name %></h5>
     <p class="card-text"><%= @product.description %></p>

@@ -23,7 +23,10 @@
     <%= f.collection_select(:category_id, Category.all, :id, :name, {:include_blank => "Select..."} , {:required => true, :class => "form-select"}) %>
   </div>
   <br>
-
+  <div class="form-outline mb-4">
+     <%= f.file_field :image %>
+  </div>
+  <br>
   <div class="actions">
     <%= f.submit button_text, class: "btn btn-primary btn-block mb-4" %>
   </div>
