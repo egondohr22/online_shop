@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   resources :categories
   resources :products
-  root 'home#new'
   devise_for :users
+
+  resources :users
+  root 'home#new'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get 'users', to: 'users#index', as: "users"
+  # get 'users', to: 'users#index', as: "users"
+  # get 'users/:id', to: 'users#show', as: "profile"
   get 'signup', to: 'users#new'
   get 'goodbye', to: 'application#goodbye'
   get 'extra', to: 'application#extra'

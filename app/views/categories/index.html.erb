@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h2>Categories</h2>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.role == "admin" %>
     <%= link_to 'New Category', new_category_path %>
   <%end%>
   <br>
@@ -19,9 +19,9 @@
             <td><%= category.name %></td>
             <td>
               <%= link_to 'Show', category %>
-              <% if user_signed_in? %> |
+              <% if user_signed_in? && current_user.role == "admin" %> |
                 <%= link_to 'Edit', edit_category_path(category) %> |
-                <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= button_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
             </td>
           </tr>

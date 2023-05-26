@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:show]
-  before_action :check_admin
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :check_admin, except: [:show, :index]
   # GET /products or /products.json
   
   def index
-    @products = Product.includes(:category).all
+    @products = Product.includes(:category).includes(image_attachment: :blob).all
 
   end
 

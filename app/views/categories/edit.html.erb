@@ -1,10 +1,7 @@
-<h1>Editing category</h1>
+<div class="my_shadow my_login_card">
+<h2>Editing category</h2>
 
 <%= render "form", button_text: "Update" %>
-
-<br>
-
-<div>
-  <%= link_to "Show this category", @category %> |
-  <%= link_to "Back to categories", categories_path %>
+<%= link_to "Show this category", @category %>
+<%= link_to "Back to categories", categories_path %>
 </div>

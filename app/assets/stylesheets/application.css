@@ -19,6 +19,30 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+button:hover {
+  color: rgba(39, 132, 145, 0.979);
+}
+a {
+  color: #069;
+}
+a:hover {
+  color: rgba(39, 132, 145, 0.979);
+}
+form {
+  display: inline;
+}
 .my_container {
    height: 100vh;
 }
@@ -28,11 +52,20 @@
  }
 
  .my_login_card {
-   width: 300px;
+   width: 400px;
    padding: 10px 20px;
    margin: auto;
    margin-top: 20px;
  }
  .my_td {
    text-align: right;
+ }
+
+ .form-floating {
+  width: 100%;
+ }
+
+ .margin-list {
+  margin-left: 5px;
+  margin-right: 5px;
  }
