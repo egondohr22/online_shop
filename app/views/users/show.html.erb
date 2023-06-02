@@ -1,8 +1,17 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-        </div>
+    <div class="col-md-3 border-right">
+      <%= form_for(@user) do |f|%>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <%= image_tag @user.profilepic.attached? ? @user.profilepic : "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg", class: "rounded-circle mt-5", width:"150px" %>
+            <span class="text-black-50"><%=@user.email%></span>
+              <div class="form-floating mb-2">
+               <%= f.file_field :profilepic, direct_upload: true %>
+               <%= f.submit "Upload", class: "btn btn-primary btn-block mb-2" %>
+              </div>
+          </div>
+       <% end %>
+     </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -10,20 +19,85 @@
                 </div>
                 <div class="row mt-2">
                     <h5 class="text-right">Identification</h5>
-                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                    <%= form_for(@user) do |f|%>
+                    <div class="form-floating">
+                      <%= f.text_field :first_name, required: false, for:"name", class: "form-control", placeholder: "First Name"%>
+                      <label class="form-label" for="name">
+                        First Name
+                      </label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :last_name, required: false, for:"last", class: "form-control", placeholder: "First Name"%>
+                      <label class="form-label" for="name">
+                        Last Name
+                      </label>
+                    </div>
+                    <div class="actions">
+                      <%= f.submit "Update name", class: "btn btn-primary btn-block mb-2" %>
+                    </div>
+                    <% end %>
+                    
                 </div>
                 <div class="row mt-3">
                     <h5 class="text-right">Contact & Address</h5>
-                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    <%= form_for(@shipping_address) do |f| %>
+                    <div class="form-floating">
+                      <%= f.text_field :street_address, required: false, for:"street", class: "form-control", placeholder: "Street address" %>
+                      <label class="form-label" for="mobile">Street Address</label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :city, required: false, for:"city", class: "form-control", placeholder: "City"%>
+                      <label class="form-label" for="mobile">City</label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :state, required: false, for:"street", class: "form-control", placeholder: "State/County"%>
+                      <label class="form-label" for="street">State/County</label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :postal_code, required: false, for:"postal", class: "form-control", placeholder: "Postal Code"%>
+                      <label class="form-label" for="postal">Postal Code</label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :country, required: false, for:"country", class: "form-control", placeholder: "Country"%>
+                      <label class="form-label" for="country">Country</label>
+                    </div>
+                    <div class="actions">
+                      <%= f.submit "Update Shipping Address", class: "btn btn-primary btn-block mb-2" %>
+                    </div>
+                  <% end %>
                 </div>
                 <div class="row mt-3">
+                    <h5 class="text-right">Payment</h5>
+                    <%= form_for(@billing_address) do |f| %>
+
+                    <div class="form-floating">
+                      <%= f.text_field :card_number, required: false, for:"card", class: "form-control", placeholder: "Card Number" %>
+                      <label class="form-label" for="card">
+                        Card Number
+                      </label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :expire_date, required: false, for:"expire", class: "form-control", placeholder: "Expire Date" %>
+                      <label class="form-label" for="expire">
+                        Expire Date
+                      </label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :security_code, required: false, for:"security", class: "form-control", placeholder: "Security Code" %>
+                      <label class="form-label" for="security">
+                        Security Code
+                      </label>
+                    </div>
+                    <div class="form-floating">
+                      <%= f.text_field :card_holder, required: false, for:"holder", class: "form-control", placeholder: "Card Holder" %>
+                      <label class="form-label" for="holder">
+                        Card Holder
+                      </label>
+                    </div>
+                     <div class="actions">
+                      <%= f.submit "Update Payment", class: "btn btn-primary btn-block mb-4" %>
+                    </div>
+                    <% end %>
 
                 </div>
                 <div class="mt-5 text-center"><button class="btn btn-primary" type="button">Save Profile</button></div>

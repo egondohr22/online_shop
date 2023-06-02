@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_184214) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_180136) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,11 +39,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_184214) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "billing_addresses", force: :cascade do |t|
+    t.text "card_number"
+    t.text "expire_date"
+    t.integer "security_code"
+    t.text "card_holder"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_addresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "mobile_number"
+    t.text "address_line1"
+    t.text "address_line2"
+    t.text "postcode"
+    t.text "country"
+    t.text "state_region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contact_addresses_on_user_id"
   end
 
   create_table "identifications", force: :cascade do |t|
@@ -53,6 +76,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_184214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identifications_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "quantity", default: 1
+    t.string "tracking_number"
+    t.string "status", default: "not shipped"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "card_number"
+    t.text "expire_date"
+    t.integer "security_code"
+    t.text "card_holder"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -67,6 +111,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_184214) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.string "street_address"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.string "country"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -76,10 +131,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_184214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role", default: "client"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contact_addresses", "users"
   add_foreign_key "identifications", "users"
+  add_foreign_key "payments", "users"
 end

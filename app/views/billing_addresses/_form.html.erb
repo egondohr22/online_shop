@@ -1,0 +1,17 @@
+<%= form_with(model: billing_address) do |form| %>
+  <% if billing_address.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(billing_address.errors.count, "error") %> prohibited this billing_address from being saved:</h2>
+
+      <ul>
+        <% billing_address.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -19,7 +19,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 button {
   background: none!important;
   border: none;
@@ -69,3 +68,4 @@ form {
   margin-left: 5px;
   margin-right: 5px;
  }
+

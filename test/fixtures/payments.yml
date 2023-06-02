@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  card_number: MyText
+  expire_date: MyText
+  security_code: 1
+  card_holder: MyText
+
+two:
+  user: two
+  card_number: MyText
+  expire_date: MyText
+  security_code: 1
+  card_holder: MyText
