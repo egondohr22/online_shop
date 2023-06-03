@@ -8,7 +8,8 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th class="w-75" scope="col">Name</th>
+          <th class="w-50" scope="col">Name</th>
+          <th scope="col">Products</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -17,6 +18,8 @@
           <tr>
             <td><%= category.id %></td>
             <td><%= category.name %></td>
+            <td><%= link_to "View #{category.products.count} Products", products_path(category_id: category.id) %></td>
+
             <td>
               <%= link_to 'Show', category %>
               <% if user_signed_in? && current_user.role == "admin" %> |

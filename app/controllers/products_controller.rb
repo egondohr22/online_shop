@@ -8,6 +8,8 @@ class ProductsController < ApplicationController
   def index
     @products = Product.includes(:category).includes(image_attachment: :blob).all
     @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
+    @products = @products.where(price: params[:price]) if params[:price].present?
+    @products = @products.where("name LIKE ? OR description LIKE ?","%#{params[:search]}%","%#{params[:search]}%") if params[:search].present?
   end
 
   # GET /products/1 or /products/1.json

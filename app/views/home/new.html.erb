@@ -14,7 +14,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <%= image_tag product.image.attached? ? product.image : "i9.jpg", class: "d-block w-100" %>
+                            <%= image_tag product.image.present? ? product.image : "i9.jpg", class: "d-block w-100" %>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
