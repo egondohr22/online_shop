@@ -3,8 +3,7 @@
   <% if user_signed_in? && current_user.role == "admin" %>
     <%= link_to 'New Product', new_product_path %>
   <%end%>
-  <br>
-  <br>
+  <%= render "filter_menu" %>
   <table class="table table-info table-striped">
       <thead>
         <tr>

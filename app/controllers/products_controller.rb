@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.includes(:category).includes(image_attachment: :blob).all
-
+    @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
   end
 
   # GET /products/1 or /products/1.json
