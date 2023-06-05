@@ -7,6 +7,7 @@ gem "devise"
 # gem 'bootstrap', '~> 5.1.3'
 gem 'sass-rails', '>= 5'
 gem 'pagy'
+gem 'jquery-rails'
 gem "image_processing", ">= 1.2"
 gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
 # gem 'bootstrap-sass'
