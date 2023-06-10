@@ -16,6 +16,13 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    unless current_user.role == "admin"
+      if(@order.user_id == current_user.id)
+        render :show
+      else
+        render :index
+      end
+    end
   end
 
   # GET /orders/new
@@ -35,6 +42,7 @@ class OrdersController < ApplicationController
       if @order.save
         product = @order.product
         product.update(stock: product.stock-1)
+        OrderMailer.send_email(current_user, @order).deliver_now
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
