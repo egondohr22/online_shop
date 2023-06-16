@@ -19,6 +19,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
 button {
   background: none!important;
   border: none;
@@ -29,12 +36,15 @@ button {
   color: #069;
   text-decoration: underline;
   cursor: pointer;
+  font-size: 16px;
+  
 }
 button:hover {
   color: rgba(39, 132, 145, 0.979);
 }
 a {
   color: #069;
+  font-size: 16px;
 }
 a:hover {
   color: rgba(39, 132, 145, 0.979);
@@ -63,9 +73,27 @@ form {
  .form-floating {
   width: 100%;
  }
+ .my_ind_center {
+  text-align: center;
+  align-self: center;
+ }
 
  .margin-list {
   margin-left: 5px;
   margin-right: 5px;
  }
 
+ #profilepic {
+  display: inline;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+ }
+
+ .my_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}

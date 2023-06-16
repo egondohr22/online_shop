@@ -10,6 +10,8 @@ class BillingAddressesController < ApplicationController
 
   # GET /billing_addresses/1 or /billing_addresses/1.json
   def show
+    redirect_to user_path(current_user.id)
+
   end
 
   # GET /billing_addresses/new

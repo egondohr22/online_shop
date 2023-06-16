@@ -27,11 +27,14 @@
             <td><%= order.status %></td>
             <td><%= order.tracking_number %></td>
             <td>
+            <% if user_signed_in?%>
+              <%= link_to 'Show', order_path(order) %>
+            <%end%>
             <% if user_signed_in? && current_user.role == "admin" %>
-              | <%= link_to 'Show', order_path(order) %>
               | <%= link_to 'Edit', edit_order_path(order) %>
               | <%= button_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
             <%end%>
+
             </td>
           </tr>
         <% end %>

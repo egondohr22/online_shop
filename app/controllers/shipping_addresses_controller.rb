@@ -10,6 +10,7 @@ class ShippingAddressesController < ApplicationController
 
   # GET /shipping_addresses/1 or /shipping_addresses/1.json
   def show
+    redirect_to user_path(current_user.id)
   end
 
   # GET /shipping_addresses/new
