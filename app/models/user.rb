@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_one :billing_address
   has_one :shipping_address
   has_many :orders
+  has_many :carts
+
 end
