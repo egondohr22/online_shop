@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
       if(@order.user_id == current_user.id)
         render :show
       else
+        @orders = Order.includes(:product, :user).where user_id: current_user.id
         render :index
       end
     end
@@ -56,7 +57,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
+        format.html { redirect_to edit_order_path(@order), notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -3,10 +3,11 @@
   <div class="form-group mb-2">
     <%= label_tag :category_id, 'Filter by category:' %>
     <%= select_tag :category_id, options_for_select(Category.all.pluck(:name, :id), params[:category_id]), prompt: 'All'%>
+    <%# <%= select_tag :price, options_for_select(Product.distinct.pluck(:price).sort, params[:price]), prompt: 'All'%>
 
     <%= label_tag :name, 'Filter by price:' %>
-    <%= select_tag :price, options_for_select(Product.distinct.pluck(:price).sort, params[:price]), prompt: 'All'%>
-
+    <%= select_tag :price, options_for_select(['Low to High', 'High to Low']), prompt:'None'%>
+    <%= label_tag :name, 'Filter by name:' %>
     <%= text_field_tag(:search, params[:search]) %>
 
     <%= submit_tag 'Filter', class: 'btn btn-primary mb-2' %>

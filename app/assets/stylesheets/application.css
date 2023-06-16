@@ -36,12 +36,15 @@ button {
   color: #069;
   text-decoration: underline;
   cursor: pointer;
+  font-size: 16px;
+  
 }
 button:hover {
   color: rgba(39, 132, 145, 0.979);
 }
 a {
   color: #069;
+  font-size: 16px;
 }
 a:hover {
   color: rgba(39, 132, 145, 0.979);

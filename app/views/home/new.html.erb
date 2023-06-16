@@ -9,6 +9,11 @@
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
+                <%= form_tag root_path, method: :get, class: 'form-inline', id: 'products-form' do %>
+                    <%= label_tag :name, 'Filter by price:' %>
+                    <%= select_tag :price, options_for_select(['Low to High', 'High to Low']), prompt:'None'%>
+                    <%= submit_tag 'Filter', class: 'btn btn-primary mb-2' %>
+                <% end %>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
                 <% @products.each do |product| %>
                     <div class="col mb-5">
