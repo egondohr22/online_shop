@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :check_admin, except: [:show]
+  before_action :check_admin, except: [:show, :update]
 
   def index
     @users = User.all
   end
 
   def show
+    
     @user = current_user
     if @user.shipping_address.nil?
       address = ShippingAddress.create(user_id: @user.id)

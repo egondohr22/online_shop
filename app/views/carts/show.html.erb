@@ -19,6 +19,7 @@
                 </thead>
                 <tbody>
                 <% sum = 0 %>
+                <% prods = []%>
                 <% @user.carts.each do |t|%>
                 <% unless t.product.nil?%>
                   <tr>
@@ -45,6 +46,7 @@
                     <td class="text-center align-middle px-0"><%= button_to '×', t, method: :delete %></td>
                   </tr>
                   <%sum = sum + t.product.price * t.quantity%>
+                  <%prods.append(t.product_id)%>
                 <%end%>
                 <%end%>
                 </tbody>
@@ -62,10 +64,10 @@
                 </div>
               </div>
             </div>
-        
+
             <div class="float-right">
               <%= link_to 'Back to shopping', root_path, class:"btn btn-lg btn-default md-btn-flat mt-2 mr-3" %>
-              <%# <%= button_to "Buy Now!", orders_path(order: { user_id: current_user.id, product_id: product.id }), data: {method: :post}, class:"btn btn-lg btn-default md-btn-flat mt-2 mr-3" %> %>
+              <%= button_to "Buy Now!", orders_path(order: { user_id: current_user.id, product_id: prods }), data: {method: :post}, class:"btn btn-lg btn-default md-btn-flat mt-2 mr-3" %>
             </div>
         
           </div>

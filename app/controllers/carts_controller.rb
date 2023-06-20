@@ -11,7 +11,6 @@ class CartsController < ApplicationController
   # GET /carts/1 or /carts/1.json
   def show
     @user = current_user
-    # @cart = Cart.includes(:product, :user).where user_id: current_user.id
     
   end
 
@@ -75,4 +74,6 @@ class CartsController < ApplicationController
     def cart_params
       params.require(:cart).permit(:id, :user_id, :product_id, :quantity)
     end
+
+    
 end
