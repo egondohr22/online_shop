@@ -1,0 +1,75 @@
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Shopping Cart</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered m-0">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                    <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                    <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% sum = 0 %>
+                <% prods = []%>
+                <% @user.carts.each do |t|%>
+                <% unless t.product.nil?%>
+                  <tr>
+                    <td class="p-4">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <a href="#" class="d-block text-dark"><%=t.product.name if t.product_id?%></a>
+                          <small>
+                            <span class="text-muted">Category: <%=t.product.category.name if t.product_id?%></span>
+                          </small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4"><%=t.product.price if t.product_id?%></td>
+                    <td class="align-middle p-4">
+                    <%= form_for(t) do |f| %>
+                      <%= f.number_field :quantity, min: 0, step: 1, required: true, class: "form-control", placeholder: "1", for:"quantity"%>
+                      <div class="actions">
+                        <%= f.submit 'Submit', class: "btn btn-primary btn-block mb-2" %>
+                      </div>
+                    <% end %>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4"><%=t.product.price * t.quantity%></td>
+                    <td class="text-center align-middle px-0"><%= button_to '×', t, method: :delete %></td>
+                  </tr>
+                  <%sum = sum + t.product.price * t.quantity%>
+                  <%prods.append(t.product_id)%>
+                <%end%>
+                <%end%>
+                </tbody>
+              </table>
+            </div>
+            <!-- / Shopping cart table -->
+        
+            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+              <div class="mt-4">
+              </div>
+              <div class="d-flex">
+                <div class="text-right mt-4">
+                  <label class="text-muted font-weight-normal m-0">Total price</label>
+                  <div class="text-large"><strong><%="#{sum} RON"%></strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-right">
+              <%= link_to 'Back to shopping', root_path, class:"btn btn-lg btn-default md-btn-flat mt-2 mr-3" %>
+              <%= button_to "Buy Now!", orders_path(order: { user_id: current_user.id, product_id: prods }), data: {method: :post}, class:"btn btn-lg btn-default md-btn-flat mt-2 mr-3" %>
+            </div>
+        
+          </div>
+      </div>
+  </div>

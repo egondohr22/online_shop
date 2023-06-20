@@ -38,16 +38,16 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-
+    product = @order.product
     respond_to do |format|
-      if @order.save
-        product = @order.product
+      if product.stock > 0 && @order.save
         product.update(stock: product.stock-1)
         OrderMailer.send_email(current_user, @order).deliver_now
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: "Order was not created." }
+
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
